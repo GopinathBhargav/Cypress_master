@@ -1,9 +1,9 @@
 
 ///<reference types="cypress"/>
 
-describe("verify by validating all the basic validations",() =>{
+describe("verify by validating all the basic validations along with the window alerts",() =>{
 
-    it("verify details",() =>{
+    it("verify window alerts",() =>{
         cy.visit("https://rahulshettyacademy.com/AutomationPractice/");
         cy.url().should('eq','https://rahulshettyacademy.com/AutomationPractice/')
         cy.title().should('eq','Practice Page')

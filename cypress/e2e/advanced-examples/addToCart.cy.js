@@ -2,8 +2,9 @@
 
 describe("verify by adding a specific vegetable to the cart and place the order",() =>{
 
+
     it("Add the vegetable to the cart and place order",() =>{
-        cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/");
+        cy.visit(Cypress.env("cart_url"));
         cy.title().should('include','GreenKart');
         cy.url().should('contain','https://rahulshettyacademy.com/');
         cy.get(".search-keyword").type("ca");

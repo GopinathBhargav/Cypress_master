@@ -2,21 +2,23 @@
 
 describe("verify by validating the products using aliases and invoke", () => {
 
+    beforeEach(()=>{
+        cy.visit(Cypress.env("test_url"));
+    })
+
+
     it("verify all the products and match with the expected value using aliase", () => {
-        cy.visit("https://automationteststore.com/");
         cy.get(".thumbnail").as('productList')
         cy.get('@productList').should('have.length', 16);
     })
 
     it("verify all the products cart containing title as add to cart", () => {
-        cy.visit("https://automationteststore.com/");
         cy.get(".thumbnail").as('productList')
         cy.get('@productList').find(".productcart").invoke('attr', 'title').should('include', 'Add to Cart')
 
     })
 
     it("verify all the products in alist and click a specific product", () => {
-        cy.visit("https://automationteststore.com/");
         cy.get(".fixed_wrapper").find(".prdocutname").each((i, index, $list) => {
             if (i.text().includes('Benefit Bella Bamba')) {
                 cy.wrap(i).click();
@@ -24,8 +26,7 @@ describe("verify by validating the products using aliases and invoke", () => {
         })
     })
 
-    it.only("verify by adding prices of each individual products", () => {
-        cy.visit("https://automationteststore.com/");
+    it("verify by adding prices of each individual products", () => {
         // cy.get(".thumbnail").find(".oneprice").each((i, index, $list) => {
         //    cy.log(i.text())}
         let totalPrice = 0;
