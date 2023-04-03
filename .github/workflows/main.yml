@@ -17,5 +17,4 @@ jobs:
         with: 
             status: ${{ job.status }}
             channel: '#github-actions'
-            message: Build {{ env.GITHUB_REF_NAME }} branch Successfully
         if: always()
