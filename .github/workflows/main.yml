@@ -3,6 +3,8 @@ on: push
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -10,3 +12,10 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v5
+      - name: Slack Notification
+        uses: act10ns/slack@v1
+        with: 
+            status: ${{ job.status }}
+            channel: '#meetups'
+            message: Build {{ env.GITHUB_REF_NAME }} branch Successfully
+        if: always()
