@@ -3,7 +3,7 @@
 describe("verify by adding a specific vegetable to the cart and place the order",() =>{
 
 
-    it("Add the vegetable to the cart and place order",() =>{
+    it.only("Add the vegetable to the cart and place order",() =>{
         cy.visit(Cypress.env("cart_url"));
         cy.title().should('include','GreenKart');
         cy.url().should('contain','https://rahulshettyacademy.com/');
