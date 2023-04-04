@@ -2,7 +2,7 @@
 
 describe("verify by adding a specific vegetable to the cart and place the order", () => {
 
-  it("Add the vegetable to the cart and place order", () => {
+  it.only("Add the vegetable to the cart and place order", () => {
     cy.visit(Cypress.env("url"))
     cy.get("input[name='radioButton']").check("radio1").should('be.checked').and('have.value', 'radio1')
     cy.get("#checkBoxOption1").check().should('be.checked').and('have.value', 'option1')
