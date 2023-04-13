@@ -19,7 +19,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: Send notification to Slack
+      - name: Send Slack message
         uses: slack/github-action@v3.0.0
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
