@@ -2,6 +2,7 @@ name: Slack Notification
 
 on: [push]
 
+
 jobs:
   slackNotification:
     runs-on: ubuntu-latest
