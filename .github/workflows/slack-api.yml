@@ -27,7 +27,6 @@ jobs:
         with:
           status: ${{ job.status }}
           author_name: GitHub Actions
-          author_icon: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
         env:
          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 #           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
