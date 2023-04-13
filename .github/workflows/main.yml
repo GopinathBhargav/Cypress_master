@@ -13,10 +13,14 @@ jobs:
         author_name: ${{ github.event.head_commit.author.name }}
         author_email: ${{ github.event.head_commit.author.email }}
         commit_message: ${{ github.event.head_commit.message }}
-        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-        channel_id: "C12345678"
+#         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+#         channel_id: "C12345678"
         text: "New commit pushed to main branch"
         color: "#36a64f"
+      env:
+       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+       SLACK_CHANNEL: C052DNGP6EL
+      if: always()
 
 
 # name: My Workflow
