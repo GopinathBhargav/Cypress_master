@@ -2,26 +2,44 @@ name: Slack Notification
 
 on: [push]
 
-
 jobs:
   slackNotification:
     runs-on: ubuntu-latest
     steps:
-    - name: Slack Notification
-      uses: 8398a7/action-slack@v3.3.0
+    - name: Post to a Slack channel
+      id: slack
+      uses: slackapi/slack-github-action@v1.23.0
       with:
-        status: ${{ job.status }}
-        author_name: ${{ github.event.head_commit.author.name }}
-        author_email: ${{ github.event.head_commit.author.email }}
-        commit_message: ${{ github.event.head_commit.message }}
-#         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-#         channel_id: "C12345678"
-        text: "New commit pushed to main branch"
-        color: "#36a64f"
+    # Slack channel id, channel name, or user id to post message.
+    # See also: https://api.slack.com/methods/chat.postMessage#channels
+    # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
+       channel-id: 'C052DNGP6EL'
+    # For posting a simple plain text message
+       slack-message: "GitHub build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
       env:
-       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-       SLACK_CHANNEL: C052DNGP6EL
-      if: always()
+       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+
+
+# jobs:
+#   slackNotification:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Slack Notification
+#       uses: 8398a7/action-slack@v3.3.0
+#       with:
+#         status: ${{ job.status }}
+#         author_name: ${{ github.event.head_commit.author.name }}
+#         author_email: ${{ github.event.head_commit.author.email }}
+#         commit_message: ${{ github.event.head_commit.message }}
+# #         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+# #         channel_id: "C12345678"
+#         text: "New commit pushed to main branch"
+#         color: "#36a64f"
+#       env:
+#        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#        SLACK_CHANNEL: C052DNGP6EL
+#       if: always()
 
 
 # name: My Workflow
