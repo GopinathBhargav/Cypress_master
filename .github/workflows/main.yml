@@ -6,17 +6,38 @@ jobs:
   slackNotification:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of the branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test the code on the runner."
+
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          - command: npm run allure:remove
+          - command: npm run allure:test
+          - command: npm run allure:report
+
       - name: Post to a Slack channel
         id: slack
         uses: slackapi/slack-github-action@v1.23.0
+         - run: echo "🍏 This job's status is ${{ job.status }}."
         with:
           # Slack channel id, channel name, or user id to post message.
           # See also: https://api.slack.com/methods/chat.postMessage#channels
           # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
           channel-id: "C051HUGR21Z"
           # For posting a simple plain text message
-          slack-message: "GitHub build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-          slack-report: "github slack report : ${{ github.workspace }}/allure-report/index.html "
+          #slack-message: "GitHub build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+          slack-message: "github slack report : ${{ github.workspace }}/allure-report/index.html "
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 # jobs:
@@ -67,19 +88,19 @@ jobs:
 # jobs:
 #   Explore-GitHub-Actions:
 #     runs-on: ubuntu-latest
-#     steps:
-#       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-#       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-#       - run: echo "🔎 The name of the branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-#       - name: Check out repository code
-#         uses: actions/checkout@v3
-#       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-#       - run: echo "🖥️ The workflow is now ready to test the code on the runner."
-#       - name: List files in the repository
-#         run: |
-#           ls ${{ github.workspace }}
-#       - name: Cypress run
-#         uses: cypress-io/github-action@v5
+# steps:
+#   - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+#   - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+#   - run: echo "🔎 The name of the branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+#   - name: Check out repository code
+#     uses: actions/checkout@v3
+#   - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+#   - run: echo "🖥️ The workflow is now ready to test the code on the runner."
+#   - name: List files in the repository
+#     run: |
+#       ls ${{ github.workspace }}
+#   - name: Cypress run
+#     uses: cypress-io/github-action@v5
 #       - run: echo "🍏 This job's status is ${{ job.status }}."
 #       - name: Slack Notification
 #         uses: rtCamp/action-slack-notify@v2
