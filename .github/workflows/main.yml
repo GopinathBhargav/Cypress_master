@@ -22,9 +22,9 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          - command: npm run allure:remove
-          - command: npm run allure:test
-          - command: npm run allure:report
+          #- command: npm run allure:remove
+          command: npm run allure:test
+          #- command: npm run allure:report
 
       - name: Post to a Slack channel
         id: slack
