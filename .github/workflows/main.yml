@@ -24,7 +24,8 @@ jobs:
         with:
           #- command: npm run allure:remove
           command: npm run allure:test
-          #- command: npm run allure:report
+        if: always()
+        #- command: npm run allure:report
 
       - name: Post to a Slack channel
         id: slack
@@ -39,6 +40,7 @@ jobs:
           slack-message: "GitHub build result: ${{ job.status }}\n ${{ github.workspace }}/allure-report/index.html "
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        if: always()
 # jobs:
 #   slackNotification:
 #     runs-on: ubuntu-latest
