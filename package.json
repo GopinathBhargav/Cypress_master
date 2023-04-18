@@ -9,7 +9,7 @@
   "author": "Gopinath Bhargav",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.4.0",
+    "cypress": "^12.6.0",
     "cypress-xpath": "^1.6.2"
   }
 }
