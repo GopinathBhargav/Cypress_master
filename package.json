@@ -9,6 +9,7 @@
   "author": "Gopinath Bhargav",
   "license": "ISC",
   "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.38.3",
     "cypress": "^12.6.0",
     "cypress-xpath": "^1.6.2"
   }
