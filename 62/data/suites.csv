@@ -1,2 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Wed Apr 19 11:13:25 GMT 2023","Wed Apr 19 11:13:33 GMT 2023","7827","","verify by validating all the basic validations along with the window alerts","","","","verify window alerts",""
