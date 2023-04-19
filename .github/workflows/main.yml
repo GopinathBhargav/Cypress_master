@@ -78,9 +78,7 @@ jobs:
           slack-message: |
             GitHub build result: 
             ${{ job.status }}
-            github.event.pull_request.html_url
-            github.event.head_commit.url
-            gopinathbhargav.github.io/github-allure-history/${{ github.run_number }}
+            github.event.pull_request.html_url || github.event.head_commit.url
             https://gopinathbhargav.github.io/Cypress_master/${{ github.run_number }}
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
