@@ -37,7 +37,7 @@ jobs:
           channel-id: "C051HUGR21Z"
           # For posting a simple plain text message
           #slack-message: "GitHub build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-          slack-message: "GitHub build result: ${{ job.status }}\n ${{ github.workspace }}/allure-report/index.html "
+          slack-message: "GitHub build result: ${{ job.status }}\n ${{ github.workspace }}/allure-report/index.html \n https://gopinathbhargav.github.io/Cypress_master/"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         if: always()
