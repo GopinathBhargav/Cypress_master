@@ -1,6 +1,9 @@
 name: Slack Notification
 
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - "!master"
 
 jobs:
   slackNotification:
@@ -27,6 +30,42 @@ jobs:
         if: always()
         #- command: npm run allure:report
 
+      - name: Get Allure history
+        uses: actions/checkout@v2
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Test marketplace action
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: build/allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
+
+      - name: Post the link to the report
+        if: always()
+        uses: Sibz/github-status-action@v1
+        with:
+          authToken: ${{secrets.GITHUB_TOKEN}}
+          context: "Test report"
+          state: "success"
+          sha: ${{ github.event.pull_request.head.sha }}
+          target_url: gopinathbhargav.github.io/github-allure-history/${{ github.run_number }}
+
       - name: Post to a Slack channel
         id: slack
         uses: slackapi/slack-github-action@v1.23.0
@@ -37,7 +76,7 @@ jobs:
           channel-id: "C051HUGR21Z"
           # For posting a simple plain text message
           #slack-message: "GitHub build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-          slack-message: "GitHub build result: ${{ job.status }}\n ${{ github.workspace }}/allure-report/index.html \n https://gopinathbhargav.github.io/Cypress_master/"
+          slack-message: "GitHub build result: ${{ job.status }}\n ${{ github.workspace }}/allure-report/index.html \n https://gopinathbhargav.github.io/Cypress_master/ \n gopinathbhargav.github.io/github-allure-history/${{ github.run_number }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         if: always()
