@@ -27,6 +27,16 @@ jobs:
         if: always()
         #- command: npm run allure:report
 
+      #- uses: actions/checkout@v2
+      - uses: cyriina/cypress-allure-action@v2.2.0
+        with:
+          allure-results-folder: "cypress/results"
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+
       - name: Post to a Slack channel
         id: slack
         uses: slackapi/slack-github-action@v1.23.0
