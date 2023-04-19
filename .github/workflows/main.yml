@@ -15,8 +15,6 @@ jobs:
 
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test the code on the runner."
 
       - name: List files in the repository
         run: |
@@ -37,16 +35,6 @@ jobs:
         with:
           ref: gh-pages
           path: gh-pages
-
-      # - name: Test marketplace action
-      #   uses: simple-elf/allure-report-action@master
-      #   if: always()
-      #   id: allure-report
-      #   with:
-      #     allure_results: build/allure-results
-      #     gh_pages: gh-pages
-      #     allure_report: allure-report
-      #     allure_history: allure-history
 
       - name: Allure Report action from marketplace
         uses: simple-elf/allure-report-action@master
@@ -87,7 +75,13 @@ jobs:
           channel-id: "C051HUGR21Z"
           # For posting a simple plain text message
           #slack-message: "GitHub build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
-          slack-message: "GitHub build result: ${{ job.status }}\n ${{ github.workspace }}/allure-report/index.html \n https://gopinathbhargav.github.io/Cypress_master/ \n gopinathbhargav.github.io/github-allure-history/${{ github.run_number }} \n https://gopinathbhargav.github.io/Cypress_master/${{ github.run_number }}"
+          slack-message: |
+            GitHub build result: 
+            ${{ job.status }}
+            github.event.pull_request.html_url
+            github.event.head_commit.url
+            gopinathbhargav.github.io/github-allure-history/${{ github.run_number }}
+            https://gopinathbhargav.github.io/Cypress_master/${{ github.run_number }}
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         if: always()
