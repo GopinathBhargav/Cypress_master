@@ -4,7 +4,7 @@
   "description": "Cypress automation gianni",
   "main": "index.js",
   "scripts": {
-    "allure:test": "cypress run --env allure=true",
+    "allure:test": "cypress run --spec cypress/e2e/advanced-examples/Contact-us.cy.js --env allure=true",
     "allure:clear": "rm -r allure-results/allure-report cypress/screenshots || true",
     "allure:report": "allure generate allure-results --clean -o allure-report",
     "allure:history": "mv -f allure-report/history allure-results/history && rm -r allure-report || true",
