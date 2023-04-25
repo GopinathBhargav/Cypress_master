@@ -82,7 +82,7 @@ jobs:
           subject: GitHub Actions Notification
           body: The workflow has completed successfully!
           from: ${{ secrets.SMTP_USERNAME }}
-          to: mailinatorme@mailinator.com
+          to: vgb369@gmail.com
      
       # - name: Post the link to the report
       #   if: always()
