@@ -73,25 +73,7 @@ jobs:
         if: always()
 
 
-      - name: Send email
-        env:
-         SMTP_SERVER: smtp.gmail.com
-         SMTP_PORT: 465
-         SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-         SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-         TO_EMAIL: mailinatorme@mailinator.com
-         FROM_EMAIL: vgb369@gmail.com
-         SUBJECT: "Subject of the email"
-         BODY: "Body of the email with HTTP URL: https://example.com"
-        run: |
-         curl -sS \
-           --url "smtp://$SMTP_SERVER:$SMTP_PORT" \
-           --ssl-reqd \
-           --mail-from "$FROM_EMAIL" \
-           --mail-rcpt "$TO_EMAIL" \
-           --user "$SMTP_USERNAME:$SMTP_PASSWORD" \
-           --upload-file <(echo -e "From: $FROM_EMAIL\nTo: $TO_EMAIL\nSubject: $SUBJECT\n\n$BODY")
-
+     
 
       # - name: Post the link to the report
       #   if: always()
