@@ -72,7 +72,17 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         if: always()
 
-
+      - name: Send Email Notification
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: GitHub Actions Notification
+          body: The workflow has completed successfully!
+          from: ${{ secrets.SMTP_USERNAME }}
+          to: mailinatorme@mailinator.com
      
 
       # - name: Post the link to the report
