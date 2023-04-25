@@ -1,3 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Wed Apr 19 10:58:07 GMT 2023","Wed Apr 19 10:58:08 GMT 2023","1194","","verify by filling the form with valid and invalid cases","","","","verify by passing valid details using css selector by driving data through fixture",""
-"passed","Wed Apr 19 11:19:51 GMT 2023","Wed Apr 19 11:19:59 GMT 2023","8045","","verify by validating all the basic validations along with the window alerts","","","","verify window alerts",""
