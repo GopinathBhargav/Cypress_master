@@ -80,7 +80,10 @@ jobs:
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: GitHub Actions Notification
-          body: The workflow has completed successfully!
+          body: |
+             The workflow has completed successfully!
+             GitHub build result: ${{ job.status }}
+             Allure report: https://gopinathbhargav.github.io/Cypress_master/${{ github.run_number }}
           from: ${{ secrets.SMTP_USERNAME }}
           to: vgb369@gmail.com
      
