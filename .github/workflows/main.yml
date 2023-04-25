@@ -91,6 +91,7 @@ jobs:
              Allure report: https://gopinathbhargav.github.io/Cypress_master/${{ github.run_number }}
           from: ${{ secrets.SMTP_USERNAME }}
           to: ${{ secrets.TO_EMAIL }}
+          
      
       # - name: Post the link to the report
       #   if: always()
