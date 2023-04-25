@@ -83,14 +83,14 @@ jobs:
           body: |
              Hi Team,
 
-             The workflow has completed successfully!
+             The workflow has completed successfully!\n \n
 
-             Please find the build result and the test report
+             Please find the build result and the test report\n \n
 
-             GitHub build result: ${{ job.status }}
-             Allure report: https://gopinathbhargav.github.io/Cypress_master/${{ github.run_number }}
+             GITHUB BUILD RESULT: ${{ job.status }}
+             ALLURE REPORT: https://gopinathbhargav.github.io/Cypress_master/${{ github.run_number }}
           from: ${{ secrets.SMTP_USERNAME }}
-          to: vgb369@gmail.com, vurakaranamgopinathbhargav@gmail.com
+          to: ${{ secrets.TO_EMAIL }}
      
       # - name: Post the link to the report
       #   if: always()
