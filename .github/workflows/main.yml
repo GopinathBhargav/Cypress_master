@@ -55,16 +55,6 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
 
-      # - name: Post the link to the report
-      #   if: always()
-      #   uses: Sibz/github-status-action@v1
-      #   with:
-      #     authToken: ${{secrets.GITHUB_TOKEN}}
-      #     context: "Test report"
-      #     state: "success"
-      #     sha: ${{ github.event.pull_request.head.sha }}
-      #     target_url: gopinathbhargav.github.io/github-allure-history/${{ github.run_number }}
-
       - name: Post to a Slack channel
         id: slack
         uses: slackapi/slack-github-action@v1.23.0
@@ -81,6 +71,38 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         if: always()
+
+      - name: Send Email Notification
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: GitHub Actions Notification - Allure test reports
+          body: |
+             Hi Team,
+
+             The workflow has completed successfully!
+
+             Please find the build result and the test report
+
+             GitHub build result: ${{ job.status }}
+             Allure report: https://gopinathbhargav.github.io/Cypress_master/${{ github.run_number }}
+          from: ${{ secrets.SMTP_USERNAME }}
+          to: ${{ secrets.TO_EMAIL }}
+          
+     
+      # - name: Post the link to the report
+      #   if: always()
+      #   uses: Sibz/github-status-action@v1
+      #   with:
+      #     authToken: ${{secrets.GITHUB_TOKEN}}
+      #     context: "Test report"
+      #     state: "success"
+      #     sha: ${{ github.event.pull_request.head.sha }}
+      #     target_url: gopinathbhargav.github.io/github-allure-history/${{ github.run_number }}
+
 # jobs:
 #   slackNotification:
 #     runs-on: ubuntu-latest
