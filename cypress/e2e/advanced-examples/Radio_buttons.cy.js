@@ -1,6 +1,12 @@
 ///<reference types="cypress"/>
 
-describe("verify by adding a specific vegetable to the cart and place the order", () => {
+describe("verify by adding a specific vegetable to the cart and place the order", // {
+//   retries: {
+//     runMode: 3,
+//     openMode: 3,
+//   },
+// },
+() => {
   it("Add the vegetable to the cart and place order", () => {
     cy.visit(Cypress.env("url"));
     cy.get("input[name='radioButton']")

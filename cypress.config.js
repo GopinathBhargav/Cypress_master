@@ -1,7 +1,13 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
+  projectId: "gpgb1o",
+  //projectId: '858wmu',
   e2e: {
+    retries: {
+      runMode: 2,
+      openMode: 2,
+    },
     baseUrl: "http://www.webdriveruniversity.com/Contact-Us/contactus.html",
     env: {
       url: "https://rahulshettyacademy.com/AutomationPractice/",
